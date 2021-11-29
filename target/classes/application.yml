@@ -1,0 +1,27 @@
+server:
+  port: 8999
+  
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:       
+      - id: user-registration
+        uri: http://localhost:9002
+        predicates:
+        - Path=/registration/**
+      - id: user-address
+        uri: http://localhost:9000
+        predicates:
+        - Path=/address/**
+      - id: user-fetch
+        uri: http://localhost:9001
+        predicates:
+        - Path=/fetch/**
+        
+    
+eureka:
+  instance:
+    hostname: localhost
+  
